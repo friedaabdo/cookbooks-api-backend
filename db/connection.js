@@ -1,10 +1,16 @@
-const mongoose = require('mongoose')
+require("dotenv").config()
 
-mongoose.connect('mongodb://localhost:27017/cookbooks_db', {useUnifiedTopology: true, useNewUrlParser: true })
+
+const {MONGODBURI} = process.env
+const mongoose = require('mongoose')
+const config =  {useUnifiedTopology: true, useNewUrlParser: true }
+const db = mongoose.connection
+
+
+mongoose.connect(MONGODBURI, config)
 
 mongoose.Promise = Promise
 
-const db = mongoose.connection
 
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', 'mongodb://localhost:27017/cookbooks_db'));
