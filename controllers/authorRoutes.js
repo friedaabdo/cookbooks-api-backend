@@ -52,22 +52,22 @@ router.put("/:authorId/updateBooks/:bookId", async (req, res) => {
 //     const author = await Author.findOneAndUpdate({ $or:[{firstName: authorNameArr[0], lastName: authorNameArr[1]}], data: cookbook,new:true})
 //     res.json({status: 200, msg:'cookbook via author updated',data: author})
 // })
-router.delete("/:authorName/deleteBooks/:bookId", async (req, res) => {
-  // console.log('req.body',req.body)
-  const updateAuthor = async () => {
-    const authorNameArr = req.params.authorName.split(" ");
-    const author = await Author.findOneAndUpdate({
-      $or: [{ firstName: authorNameArr[0], lastName: authorNameArr[1] }],
-      data: cookbook,
-      new: true,
-    });
-     res.json({ status: 200, msg: "cookbook via author updated", data: author })
-  };
-  const cookbook = await Cookbook.findByIdAndDelete( () => {
-    req.params.bookId, updateAuthor();
-  });
+// router.delete("/:authorName/deleteBooks/:bookId", async (req, res) => {
+//   // console.log('req.body',req.body)
+//   const updateAuthor = async () => {
+//     const authorNameArr = req.params.authorName.split(" ");
+//     const author = await Author.findOneAndUpdate({
+//       $or: [{ firstName: authorNameArr[0], lastName: authorNameArr[1] }],
+//       data: cookbook,
+//       new: true,
+//     });
+//      res.json({ status: 200, msg: "cookbook via author updated", data: author })
+//   };
+//   const cookbook = await Cookbook.findByIdAndDelete( () => {
+//     req.params.bookId, updateAuthor();
+//   });
 
- ;
-});
+//  ;
+// });
 
 module.exports = router;
